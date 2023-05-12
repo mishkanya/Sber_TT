@@ -12,17 +12,37 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Sber_WPFTT.Pages;
 
 namespace Sber_WPFTT
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+
+        private List<Page> _pages = new List<Page>() 
+        { 
+            new FibonacciCalculationPage(), 
+            new WordFinderPage() 
+        };
+
         public MainWindow()
         {
             InitializeComponent();
+            InitializePages();
+        }
+
+        private void InitializePages()
+        {
+            foreach (Page page in _pages)
+            {
+                var frame = new Frame();
+                frame.Content = page;
+
+                TabItem tabItem = new TabItem();
+                tabItem.Content = frame;
+                tabItem.Header = page.Title;
+                this.TabControl.Items.Add(tabItem);
+            }
         }
     }
 }

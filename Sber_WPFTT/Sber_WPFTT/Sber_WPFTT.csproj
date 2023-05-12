@@ -63,12 +63,30 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converters\IntArrayToString.cs" />
+    <Compile Include="Entities\FibonacciCalculatedData.cs" />
+    <Compile Include="Helpers\FibonacciCalculationHelper.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\FibonacciCalculationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\WordFinderPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\FibonacciCalculationPage.xaml.cs">
+      <DependentUpon>FibonacciCalculationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Validators\IntegerRangeValidation.cs" />
+    <Compile Include="Pages\WordFinderPage.xaml.cs">
+      <DependentUpon>WordFinderPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -94,5 +112,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
