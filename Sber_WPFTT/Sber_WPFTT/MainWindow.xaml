@@ -5,6 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sber_WPFTT"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="350" ResizeMode="CanResize">
+        Title="Sber_WPFTT" Height="450" Width="350" ResizeMode="CanResize">
     <TabControl x:Name="TabControl"/>
 </Window>

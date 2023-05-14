@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 
 namespace Sber_WPFTT.Converters
@@ -34,30 +32,28 @@ namespace Sber_WPFTT.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string stringResponse = (string)value;
-            if (string.IsNullOrEmpty(stringResponse))
+            string stringValue = (string)value;
+            if (string.IsNullOrEmpty(stringValue))
                 return null;
 
             var response = _emailRegex
-                .Matches(stringResponse)
+                .Matches(stringValue)
                 .Cast<Match>()
                 .Select(t => t.Value);
-            if(string.IsNullOrEmpty(SearchPattern) == false)
-            {
+
+            if (string.IsNullOrEmpty(SearchPattern) == false)
                 response = response.Where(t => t.Contains(SearchPattern));
-            }
+
             return string.Join(SEPARATOR, response);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value;
+            return DependencyProperty.UnsetValue; ;
         }
 
 
         public void UpdateProperty() => OnPropertyChanged(PROPERTY_NAME);
-
-
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {

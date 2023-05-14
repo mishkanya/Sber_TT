@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace Sber_WPFTT.Validators
@@ -14,25 +9,23 @@ namespace Sber_WPFTT.Validators
         public int Min { get; set; }
         public int Max { get; set; }
 
-        public IntegerRangeValidation()
-        {
-        }
 
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            int age = 0;
+            int intValue = 0;
+            string stringValue = (string)value;
 
             try
             {
-                if (((string)value).Length > 0)
-                    age = Int32.Parse((String)value);
+                if (stringValue.Length > 0)
+                    intValue = Int32.Parse(stringValue);
             }
             catch (Exception e)
             {
                 return new ValidationResult(false, $"Illegal characters or {e.Message}");
             }
 
-            if ((age < Min) || (age > Max))
+            if ((intValue < Min) || (intValue > Max))
             {
                 return new ValidationResult(false,
                   $"Please enter an age in the range: {Min}-{Max}.");

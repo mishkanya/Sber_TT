@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sber_WPFTT.Entities
 {
@@ -27,8 +22,6 @@ namespace Sber_WPFTT.Entities
         private string _text;
 
         public void UpdateProperty() => OnPropertyChanged(PROPERTY_NAME);
-
-
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {

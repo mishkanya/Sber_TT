@@ -2,23 +2,11 @@
 using Sber_WPFTT.Converters;
 using Sber_WPFTT.Entities;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Sber_WPFTT.Pages
 {
@@ -29,7 +17,7 @@ namespace Sber_WPFTT.Pages
 
         public WordFinderData InputText { get; set; }
 
-        private ConverterSwitcher<string> _converterSwitcher = new ConverterSwitcher<string>();
+        private ConverterSwitcher<Type> _converterSwitcher = new ConverterSwitcher<Type>();
 
 
         private UnicodeEncoding _uniEncoding = new UnicodeEncoding();
@@ -45,14 +33,13 @@ namespace Sber_WPFTT.Pages
             this.DataContext = this;
 
             WordFinder.CharsCount = 5;
-            WordFinder.PropertyChanged += (o,e) => InputText.UpdateProperty();
 
+            WordFinder.PropertyChanged += (o, e) => InputText.UpdateProperty();
             EmailsSearchPattern.PropertyChanged += (o, e) => InputText.UpdateProperty();
         }
 
         private void InitializeConverterSwitcher()
         {
-            var tabs = tabControl.Items;
 
             Binding BuildBinding(IValueConverter converter)
             {
@@ -61,23 +48,23 @@ namespace Sber_WPFTT.Pages
                 return binding;
             }
 
-            _converterSwitcher.TryAddPair(((TabItem)tabs[0]).Header.ToString(), BuildBinding(WordFinder));
+            _converterSwitcher.TryAddPair(typeof(Tabs.WordFinderTab), BuildBinding(WordFinder));
 
-            _converterSwitcher.TryAddPair(((TabItem)tabs[1]).Header.ToString(), BuildBinding(EmailsSearchPattern));
+            _converterSwitcher.TryAddPair(typeof(Tabs.EmailFinderTab), BuildBinding(EmailsSearchPattern));
         }
 
-        private void SwitchConverter(string header)
+        private void SwitchConverter(Type header)
         {
-            if( _converterSwitcher.TryGetConverter(header, out var converter))
+            if (_converterSwitcher.TryGetConverter(header, out var converter))
             {
                 OutputTextBox.SetBinding(TextBox.TextProperty, converter);
             }
         }
         private void TabChanged(object sender, SelectionChangedEventArgs e)
         {
-            SwitchConverter(((TabItem)e.AddedItems[0]).Header.ToString());
+            Type type = e.AddedItems[0].GetType();
+            SwitchConverter(type);
         }
-
 
         private async void ImportText(object sender, RoutedEventArgs e)
         {
@@ -89,8 +76,6 @@ namespace Sber_WPFTT.Pages
 
             if (openFileDialog.ShowDialog() == true)
             {
-                var filePath = openFileDialog.FileName;
-
                 var fileStream = openFileDialog.OpenFile();
 
                 using (StreamReader reader = new StreamReader(fileStream))
@@ -120,8 +105,6 @@ namespace Sber_WPFTT.Pages
                     myStream.Close();
                 }
             }
-
         }
-
     }
 }

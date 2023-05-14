@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Sber_WPFTT.Pages"
       xmlns:converters="clr-namespace:Sber_WPFTT.Converters"
+      xmlns:tabs="clr-namespace:Sber_WPFTT.Tabs"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="350"
       Title="Word Finder Page">
@@ -29,7 +30,7 @@
         </TextBox>
 
         <TabControl SelectionChanged="TabChanged" Grid.Row="1" x:Name="tabControl">
-            <TabItem Header="Word finder">
+            <tabs:WordFinderTab Header="Word finder">
                 <Grid>
                     <TextBox Text="{Binding WordFinder.CharsCount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                         <TextBox.ToolTip>
@@ -37,8 +38,8 @@
                         </TextBox.ToolTip>
                     </TextBox>
                 </Grid>
-            </TabItem>
-            <TabItem Header="Emails" >
+            </tabs:WordFinderTab>
+            <tabs:EmailFinderTab Header="Emails" >
                 <Grid>
                     <TextBox Text="{Binding EmailsSearchPattern.SearchPattern, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                         <TextBox.ToolTip>
@@ -46,7 +47,7 @@
                         </TextBox.ToolTip>
                     </TextBox>
                 </Grid>
-            </TabItem>
+            </tabs:EmailFinderTab>
         </TabControl>
 
         <TextBox x:Name="OutputTextBox" IsReadOnly="True" Grid.Row="2" TextWrapping="Wrap">

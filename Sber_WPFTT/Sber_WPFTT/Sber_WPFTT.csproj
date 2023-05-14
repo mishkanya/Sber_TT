@@ -82,10 +82,24 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Tabs\WordFinderTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Tabs\EmailFinderTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\FibonacciCalculationPage.xaml.cs">
       <DependentUpon>FibonacciCalculationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tabs\WordFinderTab.xaml.cs">
+      <DependentUpon>WordFinderTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tabs\EmailFinderTab.xaml.cs">
+      <DependentUpon>EmailFinderTab.xaml</DependentUpon>
     </Compile>
     <Compile Include="Validators\IntegerRangeValidation.cs" />
     <Compile Include="Pages\WordFinderPage.xaml.cs">

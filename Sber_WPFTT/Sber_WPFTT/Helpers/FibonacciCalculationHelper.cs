@@ -1,9 +1,5 @@
 ﻿using Sber_WPFTT.Entities;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sber_WPFTT.Helpers
 {
@@ -28,13 +24,10 @@ namespace Sber_WPFTT.Helpers
 
         public FibonacciCalculatedData GetFibonacciCalculatedData(FibonacciCalculatedData data)
         {
-            var output = new FibonacciCalculatedData();
-            output = data;
-            var fns = GetFibonacciSequenceByRange(output.TargetNumber);
-            output.FibonacciSequence = fns;
-
-            output.FibonacciSequenceSum = fns.Sum();
-            return output;
+            var fibonacciArray = GetFibonacciSequenceByRange(data.TargetNumber);
+            data.FibonacciSequence = fibonacciArray;
+            data.FibonacciSequenceSum = fibonacciArray.Sum();
+            return data;
         }
     }
 }
