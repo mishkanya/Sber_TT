@@ -63,8 +63,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converters\EmailFinder.cs" />
     <Compile Include="Converters\IntArrayToString.cs" />
+    <Compile Include="Converters\WordFinderByCharsCount.cs" />
+    <Compile Include="Entities\ConverterSwitcher.cs" />
     <Compile Include="Entities\FibonacciCalculatedData.cs" />
+    <Compile Include="Entities\WordFinderData.cs" />
     <Compile Include="Helpers\FibonacciCalculationHelper.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

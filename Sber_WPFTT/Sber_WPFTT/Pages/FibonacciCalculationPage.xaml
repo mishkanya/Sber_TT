@@ -12,7 +12,6 @@
       Title="Fibonacci Calculation Page">
     <Page.Resources>
         <converters:IntArrayToString x:Key="intArrayConverter"/>
-        
     </Page.Resources>
     <Grid Margin="10">
         <Grid.ColumnDefinitions>

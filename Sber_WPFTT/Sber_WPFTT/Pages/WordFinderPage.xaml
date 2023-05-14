@@ -4,11 +4,60 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Sber_WPFTT.Pages"
+      xmlns:converters="clr-namespace:Sber_WPFTT.Converters"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="350"
       Title="Word Finder Page">
+    
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBox TextWrapping="Wrap" Grid.Row="0" Text="{Binding InputText.Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+            <TextBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Import" Click="ImportText"/>
+                </ContextMenu>
+            </TextBox.ContextMenu>
+            <TextBox.ToolTip>
+                <ToolTip Content="ПКМ для импорта текста"/>
+            </TextBox.ToolTip>
+        </TextBox>
+
+        <TabControl SelectionChanged="TabChanged" Grid.Row="1" x:Name="tabControl">
+            <TabItem Header="Word finder">
+                <Grid>
+                    <TextBox Text="{Binding WordFinder.CharsCount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                        <TextBox.ToolTip>
+                            <ToolTip Content="Поиск слов в тексте по количеству символов"/>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Emails" >
+                <Grid>
+                    <TextBox Text="{Binding EmailsSearchPattern.SearchPattern, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                        <TextBox.ToolTip>
+                            <ToolTip Content="Поиск email адресов по тексту"/>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <TextBox x:Name="OutputTextBox" IsReadOnly="True" Grid.Row="2" TextWrapping="Wrap">
+            <TextBox.ToolTip>
+                <ToolTip Content="ПКМ для экспорта текста"/>
+            </TextBox.ToolTip>
+            <TextBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Export" Click="ExportText"/>
+                </ContextMenu>
+            </TextBox.ContextMenu>
+        </TextBox>
     </Grid>
 </Page>
